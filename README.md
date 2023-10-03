@@ -1,1 +1,1 @@
-# sEMG_transformer_classification
+# sEMG Classification using Transformers

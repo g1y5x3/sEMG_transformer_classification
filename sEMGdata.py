@@ -63,9 +63,9 @@ class sEMGData():
     return x_train, y_train, x_test, y_test
 
 class sEMGDataset(Dataset):
-  def __init__(self, signal, label, transform=None, verbose=False):
-    self.signal = torch.from_numpy(signal.astype(np.float32))
-    self.label  = torch.from_numpy(label.astype(np.float32))
+  def __init__(self, signal, label, dtype=np.float32, transform=None, verbose=False):
+    self.signal = torch.from_numpy(signal.astype(dtype))
+    self.label  = torch.from_numpy(label.astype(dtype))
 
   def __len__(self):
     return np.shape(self.label)[0]
