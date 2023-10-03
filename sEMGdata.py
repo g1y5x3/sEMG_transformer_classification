@@ -61,3 +61,20 @@ class sEMGData():
     print(f"# of Fatigued Training Samples: {np.sum(y_train ==  1):>4}")
     
     return x_train, y_train, x_test, y_test
+
+class sEMGDataset(Dataset):
+  def __init__(self, signal, label, transform=None, verbose=False):
+    self.signal = torch.from_numpy(signal.astype(np.float32))
+    self.label  = torch.from_numpy(label.astype(np.float32))
+
+  def __len__(self):
+    return np.shape(self.label)[0]
+  
+  def __getitem__(self, idx):
+    if torch.is_tensor(idx):
+      idx = idx.tolist()
+    
+    signal = self.signal[idx,...]
+    label  = self.label[idx,...]
+    
+    return signal, label
